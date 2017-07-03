@@ -1,0 +1,18 @@
+//定义hash表和基本数据节点
+typedef struct _Node
+{
+	int data;
+	struct _NODE* next;
+}NODE;
+
+typedef struct _HASH_TABLE
+{
+	NODE* value[10];
+}HASH_TABLE;
+//创建hash表
+HASH_TABLE* create_hash_table()
+{
+	HASH_TABLE* pHashtb1 = (HASH_TABLE*)malloc(sizeof(HASH_TABLE));
+	memset(pHashtb1,0,sizeof(HASH_TABLE));
+	return pHashtb1;
+}
