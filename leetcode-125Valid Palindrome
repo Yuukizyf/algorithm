@@ -1,0 +1,25 @@
+class Solution {
+public:
+    bool isPalindrome(string s) {
+        transform(s.begin(),s.end(),s.begin(),::tolower); //traform(源容器起始位置，源容器终止位置，目标容器起始位置，函数指针）
+                                                          //tolower 对字符串里的小写字母转换成大写字母
+        auto left = s.begin();
+        auto right = s.end();  //如果编译不过 用auto right = prev(s.end())
+        while(left<right){
+            if(!::isalnum(*left)){
+                left++;
+            }
+            else if(!::isalnum(*right)){
+                right--;
+            }
+            else if(*left!=*right){
+                return false;
+            }
+            else{
+                left++;
+                right--;
+            }
+        }
+        return 1;
+    }
+};
