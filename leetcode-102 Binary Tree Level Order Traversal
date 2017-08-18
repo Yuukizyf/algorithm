@@ -1,0 +1,88 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    vector<vector<int>> levelOrder(TreeNode* root) {
+        vector<vector<int>> result;
+        if(root == NULL){
+            return result;
+        }
+        
+        queue <TreeNode *> Q;
+        Q.push(root);
+        while(!Q.empty()){
+            int size = Q.size();
+            vector<int> level;
+            
+            for(int i=0;i<size;i++){
+                TreeNode *head = Q.front();
+                Q.pop();
+                level.push_back(head->val);
+                if(head->left!=NULL){
+                    Q.push(head->left);
+                }
+                if(head->right!=NULL){
+                    Q.push(head->right);
+                }
+            }
+            result.push_back(level);
+        }
+        return result;
+    }
+};
+
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    vector<vector<int>> levelOrder(TreeNode* root) {
+        TreeNode* last;
+        TreeNode* nlast;
+        vector<vector<int>> result;
+        vector<int> tmp;
+        queue <TreeNode*> Q;
+        last = root;
+        nlast = root;
+        Q.push(root);
+        if(root == NULL){
+            return result;
+        }
+
+        while(!Q.empty()){
+            TreeNode* p = Q.front();
+            Q.pop();
+            
+            tmp.push_back(p->val);
+            if(p->left){
+                Q.push(p->left);
+                nlast=p->left;
+            }
+            if(p->right!=NULL){
+                Q.push(p->right);
+                nlast = p->right;
+            }
+            if(p == last){
+                last = nlast;
+                result.push_back(tmp);
+                tmp.clear();
+            }
+            
+        }
+        return result;
+    }
+};

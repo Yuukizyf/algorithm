@@ -1,0 +1,34 @@
+////不会不会不会看不懂
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+    
+public:
+    
+    void midOrderTraversal(TreeNode *node, vector<int> &s) {
+        if (!node) return;
+        midOrderTraversal(node->left, s);
+        s.push_back(node->val);
+        midOrderTraversal(node->right, s);
+    }
+    bool isValidBST(TreeNode* root) {
+
+    if (!root) return true;
+        vector<int> s;
+        midOrderTraversal(root, s);
+
+        for (int i = 1; i < s.size(); i++) {
+            if (s[i] < s[i-1] || s[i] == s[i-1]) {
+                return false;
+            }
+        }
+        return true;
+    }
+};
